@@ -642,12 +642,13 @@ Custom property | Description | Default
       _updateMarkers: function(maxMarkers, min, max, snaps) {
         if (!snaps) {
           this._setMarkers([]);
+        } else {
+          var steps = Math.round((max - min) / this.step);
+          if (steps > maxMarkers) {
+            steps = maxMarkers;
+          }
+          this._setMarkers(new Array(steps));
         }
-        var steps = Math.round((max - min) / this.step);
-        if (steps > maxMarkers) {
-          steps = maxMarkers;
-        }
-        this._setMarkers(new Array(steps));
       },
 
       _mergeClasses: function(classes) {
